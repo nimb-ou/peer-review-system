@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "name": "peerpulse-enterprise",
+  "builds": [
+    {
+      "src": "production_app/quick_demo.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "v3_demo_server.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/v3_demo_server.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/production_app/quick_demo.html"
+    }
+  ],
+  "env": {
+    "GEMINI_API_KEY": "AIzaSyBBtqc1ZXs1r2tc2MupV_bzmu600WYpxzU"
+  },
+  "functions": {
+    "v3_demo_server.py": {
+      "runtime": "python3.9"
+    }
+  }
+}

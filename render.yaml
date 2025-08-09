@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: peerpulse-enterprise
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python v3_demo_server.py"
+    envVars:
+      - key: GEMINI_API_KEY
+        value: AIzaSyBBtqc1ZXs1r2tc2MupV_bzmu600WYpxzU
+      - key: PORT
+        value: 8000
+      - key: PYTHON_VERSION
+        value: "3.9"
+  
+  - type: static
+    name: peerpulse-frontend
+    staticPublishPath: ./production_app
+    buildCommand: "echo 'Static site ready'"
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /quick_demo.html

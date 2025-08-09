@@ -1,0 +1,17 @@
+[build]
+  command = "echo 'Using pre-built demo'"
+  publish = "production_app"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/*"
+  to = "/quick_demo.html"
+  status = 200
+
+[context.production]
+  command = "echo 'Production deployment'"
+
+[context.deploy-preview]
+  command = "echo 'Deploy preview'"
