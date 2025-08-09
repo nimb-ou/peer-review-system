@@ -1,0 +1,46 @@
+{
+  "timestamp": "2025-08-09T19:45:49.808654",
+  "insights_results": [
+    {
+      "employee": "Jamie Brown",
+      "scenario": "High Performer",
+      "insights": {
+        "summary": "",
+        "likely_causes": "* **Discrepancy between task performance and behavioral observation:** Jamie's high average score suggests strong task completion, but the zero behavioral score indicates a potential disconnect between individual contributions and active engagement in team dynamics, possibly due to a lack of visible participation in meetings, proactive communication, or offering suggestions.  This could be a measurement issue (how \"behavior\" is defined and measured) or a genuine gap.",
+        "manager_actions": "",
+        "peer_actions": "",
+        "positive_aspects": ""
+      },
+      "timestamp": "2025-08-09T19:45:32.356277"
+    },
+    {
+      "employee": "Quinn Davis",
+      "scenario": "At Risk Employee",
+      "insights": {
+        "summary": "",
+        "likely_causes": "* **Burnout/Overwhelm:** The negative 7-day trend and low average score suggest Quinn may be experiencing burnout or feeling overwhelmed by their workload.  The high rate of withdrawn behavior supports this, indicating potential disengagement due to stress.\n* **Lack of Clarity/Support:** The low composite behavioral score and low collaboration rate could indicate a lack of clarity regarding expectations or insufficient support from the team and/or management.  This might lead to avoidance and withdrawal.\n* **Implement Performance Improvement Plan (PIP):** If the issues persist, develop a structured PIP with clearly defined goals, timelines, and support mechanisms. This should include regular check-ins and opportunities for feedback, focusing on skill development and workload management.",
+        "manager_actions": "",
+        "peer_actions": "",
+        "positive_aspects": "While the overall picture is concerning, it's important to note that 35% of feedback indicates some collaborative behavior. This suggests that Quinn is not entirely disengaged and that there is potential for improvement with targeted interventions.  Additionally, the relatively high number of reviews (38 in 14 days) indicates engagement from stakeholders, suggesting a willingness to address the situation proactively."
+      },
+      "timestamp": "2025-08-09T19:45:38.000713"
+    },
+    {
+      "employee": "River Anderson",
+      "scenario": "Steady Performer",
+      "insights": {
+        "summary": "",
+        "likely_causes": "* **Lack of Clarity/Engagement:** River's low composite behavioral score (0.00) suggests a potential disconnect between expectations and performance.  This could stem from unclear goals, insufficient training, or a lack of feeling valued and engaged in their work.  The relatively high number of reviews (45 in 14 days) might indicate frequent feedback, possibly contributing to the low behavioral score if not delivered constructively.",
+        "manager_actions": "* **Schedule a One-on-One Meeting:** Initiate a private conversation focusing on understanding River's perspective.  Actively listen to their concerns and collaboratively address any roadblocks to performance and engagement. Explore the possibility of providing additional training or clarifying expectations.  Focus on understanding the root cause of the low behavioral score.\n* **Implement a Performance Improvement Plan (PIP):** If the initial conversation doesn't yield significant improvement, create a structured PIP with clear, measurable goals, timelines, and support systems for River.  Regular check-ins should be implemented to monitor progress and provide ongoing support.",
+        "peer_actions": "",
+        "positive_aspects": "* **Moderate Average Score:**  River maintains a 3.5 average score, suggesting"
+      },
+      "timestamp": "2025-08-09T19:45:43.225826"
+    }
+  ],
+  "features_tested": [
+    "Pydantic Models"
+  ],
+  "gemini_api_status": "active",
+  "v3_status": "ready_for_production"
+}

@@ -122,7 +122,8 @@ Keep responses professional, constructive, and focused on growth. Avoid negative
             return self._generate_fallback_insights({})
         
         try:
-            url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key={self.api_key}"
+            # Use the correct Gemini API endpoint
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={self.api_key}"
             
             prompt = f"""You are an HR analyst expert in workplace psychology. 
 
