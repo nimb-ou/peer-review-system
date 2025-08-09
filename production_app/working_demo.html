@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeerPulse Enterprise - Live Working Demo</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .app {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .nav-btn {
+            background: none;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+        
+        .nav-btn.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .welcome {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+        
+        .welcome h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .welcome p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .status-bar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 1rem;
+            text-align: center;
+            color: white;
+            margin-top: auto;
+        }
+        
+        .demo-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            color: white;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .ai-insight {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .success-message {
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid #4caf50;
+            color: #2e7d32;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-menu {
+                order: 1;
+            }
+            
+            .main-content {
+                padding: 1rem;
+            }
+            
+            .welcome h1 {
+                font-size: 2rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function PeerPulseDemo() {
+            const [currentView, setCurrentView] = React.useState('login');
+            const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+            const [userRole, setUserRole] = React.useState('employee');
+            const [reviewSubmitted, setReviewSubmitted] = React.useState(false);
+            
+            const handleLogin = (role) => {
+                setUserRole(role.toLowerCase());
+                setIsLoggedIn(true);
+                setCurrentView('dashboard');
+            };
+            
+            const handleLogout = () => {
+                setIsLoggedIn(false);
+                setCurrentView('login');
+                setReviewSubmitted(false);
+            };
+            
+            const submitReview = () => {
+                setReviewSubmitted(true);
+                setTimeout(() => setReviewSubmitted(false), 5000);
+            };
+            
+            const renderContent = () => {
+                if (!isLoggedIn) {
+                    return (
+                        <div className="welcome">
+                            <h1>🚀 PeerPulse Enterprise</h1>
+                            <p>AI-Powered Performance Management System</p>
+                            
+                            <div className="demo-actions">
+                                <button className="btn" onClick={() => handleLogin('Employee')}>
+                                    👤 Login as Employee
+                                </button>
+                                <button className="btn" onClick={() => handleLogin('Manager')}>
+                                    👥 Login as Manager
+                                </button>
+                                <button className="btn" onClick={() => handleLogin('Admin')}>
+                                    👑 Login as Admin
+                                </button>
+                            </div>
+                            
+                            <div style={{marginTop: '3rem', color: 'rgba(255,255,255,0.8)'}}>
+                                <p>🎮 Click any role above to experience the full application!</p>
+                            </div>
+                        </div>
+                    );
+                }
+                
+                switch (currentView) {
+                    case 'dashboard':
+                        return (
+                            <>
+                                <div className="welcome">
+                                    <h1>🎯 Dashboard</h1>
+                                    <p>Welcome back! Here's your performance overview</p>
+                                </div>
+                                
+                                <div className="stats">
+                                    <div className="stat-card">
+                                        <div className="stat-number">4.2</div>
+                                        <div className="stat-label">Your Performance Score</div>
+                                    </div>
+                                    <div className="stat-card">
+                                        <div className="stat-number">87%</div>
+                                        <div className="stat-label">Team Health Index</div>
+                                    </div>
+                                    <div className="stat-card">
+                                        <div className="stat-number">25</div>
+                                        <div className="stat-label">Team Members</div>
+                                    </div>
+                                    <div className="stat-card">
+                                        <div className="stat-number">🧠 AI</div>
+                                        <div className="stat-label">Gemini Powered</div>
+                                    </div>
+                                </div>
+                                
+                                <div className="ai-insight">
+                                    <h3>🧠 AI Insight of the Day</h3>
+                                    <p>Based on recent reviews, you're showing strong collaboration skills. Consider mentoring junior team members to further enhance your leadership potential.</p>
+                                </div>
+                                
+                                <div className="features">
+                                    <div className="card">
+                                        <div className="card-icon">📈</div>
+                                        <h3>Performance Trends</h3>
+                                        <p>Your scores have improved by 15% this quarter, with particular strength in collaboration and problem-solving.</p>
+                                    </div>
+                                    
+                                    <div className="card">
+                                        <div className="card-icon">🎯</div>
+                                        <h3>Recent Activity</h3>
+                                        <p>5 reviews submitted this week, 3 pending peer reviews, 2 new AI insights available.</p>
+                                    </div>
+                                </div>
+                            </>
+                        );
+                        
+                    case 'reviews':
+                        return (
+                            <>
+                                <div className="welcome">
+                                    <h1>⭐ Submit Peer Review</h1>
+                                    <p>Share feedback about your colleagues</p>
+                                </div>
+                                
+                                {reviewSubmitted && (
+                                    <div className="success-message">
+                                        🎉 Review submitted successfully! AI insights will be updated within 24 hours.
+                                    </div>
+                                )}
+                                
+                                <div className="card">
+                                    <div className="form-group">
+                                        <label>Select Colleague</label>
+                                        <select defaultValue="">
+                                            <option value="" disabled>Choose a team member...</option>
+                                            <option value="jamie">Jamie Brown - Senior Developer</option>
+                                            <option value="quinn">Quinn Davis - Product Manager</option>
+                                            <option value="river">River Anderson - UX Designer</option>
+                                            <option value="casey">Casey Garcia - Marketing Manager</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div className="form-group">
+                                        <label>Collaboration Style</label>
+                                        <select defaultValue="">
+                                            <option value="" disabled>How would you describe their collaboration?</option>
+                                            <option value="collaborative">🤝 Collaborative - Works well with others</option>
+                                            <option value="neutral">😐 Neutral - Standard interaction</option>
+                                            <option value="withdrawn">😔 Withdrawn - Less engaged</option>
+                                            <option value="blocking">🚫 Blocking - Creates obstacles</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div className="form-group">
+                                        <label>Performance Rating (1-5)</label>
+                                        <input type="range" min="1" max="5" defaultValue="4" />
+                                        <div style={{textAlign: 'center', marginTop: '0.5rem'}}>
+                                            ⭐⭐⭐⭐⭐
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="form-group">
+                                        <label>Additional Comments (Optional)</label>
+                                        <textarea rows="3" placeholder="Share specific examples or constructive feedback..."></textarea>
+                                    </div>
+                                    
+                                    <button className="btn" onClick={submitReview}>
+                                        📤 Submit Review
+                                    </button>
+                                </div>
+                                
+                                <div className="ai-insight">
+                                    <h3>💡 AI Writing Assistant</h3>
+                                    <p>Tip: Specific examples make reviews more valuable. Try: "Jamie helped debug the payment system and shared knowledge with the team."</p>
+                                </div>
+                            </>
+                        );
+                        
+                    case 'insights':
+                        return (
+                            <>
+                                <div className="welcome">
+                                    <h1>🧠 AI Insights</h1>
+                                    <p>Powered by Gemini AI with real behavioral analysis</p>
+                                </div>
+                                
+                                <div className="features">
+                                    <div className="card">
+                                        <div className="card-icon">📊</div>
+                                        <h3>Jamie Brown - High Performer</h3>
+                                        <p><strong>AI Analysis:</strong> Showing exceptional collaboration skills and leadership potential. Scores trending upward with 92% confidence.</p>
+                                        <div style={{marginTop: '1rem'}}>
+                                            <span style={{background: '#e8f5e8', color: '#2e7d32', padding: '0.25rem 0.5rem', borderRadius: '12px', fontSize: '0.8rem'}}>
+                                                ✅ 92% Confidence
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="card">
+                                        <div className="card-icon">⚠️</div>
+                                        <h3>Quinn Davis - Needs Support</h3>
+                                        <p><strong>AI Analysis:</strong> May benefit from additional mentoring. Recent feedback suggests burnout or overwhelming workload.</p>
+                                        <div style={{marginTop: '1rem'}}>
+                                            <span style={{background: '#fff3e0', color: '#f57c00', padding: '0.25rem 0.5rem', borderRadius: '12px', fontSize: '0.8rem'}}>
+                                                ⚠️ 87% Confidence
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="card">
+                                        <div className="card-icon">📈</div>
+                                        <h3>River Anderson - Steady Growth</h3>
+                                        <p><strong>AI Analysis:</strong> Consistent performance with room for growth in team collaboration. Positive trajectory detected.</p>
+                                        <div style={{marginTop: '1rem'}}>
+                                            <span style={{background: '#e3f2fd', color: '#1976d2', padding: '0.25rem 0.5rem', borderRadius: '12px', fontSize: '0.8rem'}}>
+                                                📊 79% Confidence
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="ai-insight">
+                                    <h3>🎯 Team Recommendations</h3>
+                                    <p><strong>AI Suggests:</strong> Consider cross-functional collaboration sessions and peer mentoring programs. Current team health score: 87% (Excellent).</p>
+                                </div>
+                            </>
+                        );
+                        
+                    case 'team':
+                        return (
+                            <>
+                                <div className="welcome">
+                                    <h1>👥 Team Analytics</h1>
+                                    <p>Comprehensive team performance overview</p>
+                                </div>
+                                
+                                <div className="stats">
+                                    <div className="stat-card">
+                                        <div className="stat-number">25</div>
+                                        <div className="stat-label">Team Members</div>
+                                    </div>
+                                    <div className="stat-card">
+                                        <div className="stat-number">87%</div>
+                                        <div className="stat-label">Health Score</div>
+                                    </div>
+                                    <div className="stat-card">
+                                        <div className="stat-number">8,964</div>
+                                        <div className="stat-label">Total Reviews</div>
+                                    </div>
+                                    <div className="stat-card">
+                                        <div className="stat-number">92%</div>
+                                        <div className="stat-label">Collaboration Rate</div>
+                                    </div>
+                                </div>
+                                
+                                <div className="features">
+                                    <div className="card">
+                                        <div className="card-icon">🏆</div>
+                                        <h3>Top Performers</h3>
+                                        <p>Jamie Brown (4.8/5), Taylor Johnson (4.6/5), Casey Garcia (4.5/5)</p>
+                                    </div>
+                                    
+                                    <div className="card">
+                                        <div className="card-icon">📊</div>
+                                        <h3>Department Breakdown</h3>
+                                        <p>Engineering: 8 members, Product: 6 members, Design: 4 members, Marketing: 3 members, Operations: 4 members</p>
+                                    </div>
+                                    
+                                    <div className="card">
+                                        <div className="card-icon">🎯</div>
+                                        <h3>Collaboration Network</h3>
+                                        <p>High connectivity detected across departments. Cross-functional projects showing 15% better outcomes.</p>
+                                    </div>
+                                </div>
+                            </>
+                        );
+                        
+                    default:
+                        return (
+                            <div className="welcome">
+                                <h1>🚧 Feature Coming Soon</h1>
+                                <p>This section is under development</p>
+                                <button className="btn" onClick={() => setCurrentView('dashboard')}>
+                                    🏠 Back to Dashboard
+                                </button>
+                            </div>
+                        );
+                }
+            };
+            
+            if (!isLoggedIn) {
+                return (
+                    <div className="app">
+                        <div className="main-content">
+                            {renderContent()}
+                        </div>
+                    </div>
+                );
+            }
+            
+            return (
+                <div className="app">
+                    <header className="header">
+                        <div className="logo">
+                            🚀 PeerPulse Enterprise
+                        </div>
+                        
+                        <nav className="nav-menu">
+                            <button 
+                                className={`nav-btn ${currentView === 'dashboard' ? 'active' : ''}`}
+                                onClick={() => setCurrentView('dashboard')}
+                            >
+                                📊 Dashboard
+                            </button>
+                            <button 
+                                className={`nav-btn ${currentView === 'reviews' ? 'active' : ''}`}
+                                onClick={() => setCurrentView('reviews')}
+                            >
+                                ⭐ Reviews
+                            </button>
+                            <button 
+                                className={`nav-btn ${currentView === 'insights' ? 'active' : ''}`}
+                                onClick={() => setCurrentView('insights')}
+                            >
+                                🧠 AI Insights
+                            </button>
+                            {(userRole === 'manager' || userRole === 'admin') && (
+                                <button 
+                                    className={`nav-btn ${currentView === 'team' ? 'active' : ''}`}
+                                    onClick={() => setCurrentView('team')}
+                                >
+                                    👥 Team
+                                </button>
+                            )}
+                        </nav>
+                        
+                        <div className="user-info">
+                            <span>🎭 {userRole.charAt(0).toUpperCase() + userRole.slice(1)} Mode</span>
+                            <div className="avatar">
+                                {userRole === 'admin' ? '👑' : userRole === 'manager' ? '👥' : '👤'}
+                            </div>
+                            <button className="btn" onClick={handleLogout} style={{padding: '0.5rem 1rem', fontSize: '0.9rem'}}>
+                                🚪 Logout
+                            </button>
+                        </div>
+                    </header>
+                    
+                    <main className="main-content">
+                        {renderContent()}
+                    </main>
+                    
+                    <div className="status-bar">
+                        <p>🚀 PeerPulse Enterprise v3.0 | 🧠 AI Status: Active | 📊 {userRole} Dashboard | 🌐 Cloud Ready</p>
+                    </div>
+                </div>
+            );
+        }
+        
+        ReactDOM.render(<PeerPulseDemo />, document.getElementById('root'));
+    </script>
+</body>
+</html>
