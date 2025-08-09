@@ -1,0 +1,15 @@
+[build]
+cmd = "cd production_app/frontend && npm ci && npm run build"
+
+[deploy]
+startCommand = "python v3_demo_server.py"
+healthcheckPath = "/"
+healthcheckTimeout = 100
+restartPolicyType = "ON_FAILURE"
+
+[env]
+GEMINI_API_KEY = "${{GEMINI_API_KEY}}"
+PORT = "${{PORT}}"
+
+[[services]]
+name = "peerpulse-backend"

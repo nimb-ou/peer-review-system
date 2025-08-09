@@ -1,23 +1,32 @@
 services:
+  # Frontend - React App
   - type: web
-    name: peerpulse-enterprise
-    env: python
-    plan: free
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "python v3_demo_server.py"
-    envVars:
-      - key: GEMINI_API_KEY
-        value: AIzaSyBBtqc1ZXs1r2tc2MupV_bzmu600WYpxzU
-      - key: PORT
-        value: 8000
-      - key: PYTHON_VERSION
-        value: "3.9"
-  
-  - type: static
     name: peerpulse-frontend
-    staticPublishPath: ./production_app
-    buildCommand: "echo 'Static site ready'"
+    env: static
+    buildCommand: cd production_app/frontend && npm ci && npm run build
+    staticPublishPath: ./production_app/frontend/build
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
     routes:
       - type: rewrite
         source: /*
-        destination: /quick_demo.html
+        destination: /index.html
+
+  # Backend - FastAPI
+  - type: web
+    name: peerpulse-backend
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python v3_demo_server.py
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: PORT
+        value: 8000
+    healthCheckPath: /

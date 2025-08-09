@@ -1,17 +1,23 @@
 [build]
-  command = "echo 'Using pre-built demo'"
-  publish = "production_app"
+  publish = "production_app/frontend/build"
+  command = "cd production_app/frontend && npm ci && npm run build"
 
 [build.environment]
   NODE_VERSION = "18"
-
+  
 [[redirects]]
   from = "/*"
-  to = "/quick_demo.html"
+  to = "/index.html"
   status = 200
 
-[context.production]
-  command = "echo 'Production deployment'"
-
-[context.deploy-preview]
-  command = "echo 'Deploy preview'"
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
