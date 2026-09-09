@@ -196,7 +196,7 @@ Transform PeerPulse from a team tool into a comprehensive organizational platfor
 5. **Testing Framework**: Pytest + comprehensive test suite
 
 ### **Development Environment**
-- **Container Orchestration**: Docker + Docker Compose
+- **Container Management**: Docker + Docker Compose
 - **Local Development**: Hot-reload development server
 - **Database**: PostgreSQL with Docker
 - **Cache**: Redis for development

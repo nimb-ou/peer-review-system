@@ -257,7 +257,7 @@ class AdvancedAnalytics:
             top_connector = network_analysis['top_connectors'][0][0] if network_analysis['top_connectors'] else None
             if top_connector:
                 recommendations['process_improvements'].append(
-                    f"Leverage {top_connector} as a team connector for knowledge sharing"
+                    f"Partner with {top_connector} as a team connector for knowledge sharing"
                 )
         
         if network_analysis.get('density', 0) < 0.3:

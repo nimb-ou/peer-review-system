@@ -47,7 +47,7 @@
 ### **Architecture Overview (1 minute)**
 - **Frontend:** React 18 + TypeScript + Material-UI
 - **Backend:** FastAPI + SQLAlchemy + Python
-- **AI:** Google Gemini 1.5 Flash integration
+- **AI:** Google Gemini 2.5 Flash integration
 - **Database:** SQLite (dev) / PostgreSQL (prod)
 - **Deployment:** Multi-cloud (Netlify, Railway, Vercel, Render)
 
@@ -152,7 +152,7 @@ multiple cloud platforms and includes comprehensive testing."
 ### **Common Questions & Answers:**
 
 **Q: "How does the AI integration work?"**
-**A:** "I use Google's Gemini 1.5 Flash API to analyze performance data and generate natural language insights. The system sends structured data to Gemini and receives human-readable recommendations that help managers understand team dynamics."
+**A:** "I use Google's Gemini 2.5 Flash API to analyze performance data and generate natural language insights. The system sends structured data to Gemini and receives human-readable recommendations that help managers understand team dynamics."
 
 **Q: "How scalable is this?"**
 **A:** "The architecture is cloud-native with FastAPI backend that can handle thousands of concurrent users. The database is optimized with proper indexing, and the frontend uses React's efficient rendering. It's deployed across multiple cloud platforms."

@@ -139,7 +139,7 @@ python v3_demo_server.py  # http://localhost:8000
 
 - **Frontend:** React 18, TypeScript, Material-UI
 - **Backend:** FastAPI, Python, SQLAlchemy  
-- **AI:** Google Gemini 1.5 Flash
+- **AI:** Google Gemini 2.5 Flash
 - **Database:** SQLite (dev) / PostgreSQL (prod)
 - **Deployment:** Netlify, Vercel, Railway, Render
 

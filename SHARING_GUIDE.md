@@ -10,7 +10,7 @@
 ### **What's Included:**
 ✅ **Complete React Frontend** (TypeScript + Material-UI)  
 ✅ **FastAPI Backend** (Python + SQLAlchemy)  
-✅ **AI Integration** (Gemini 1.5 Flash)  
+✅ **AI Integration** (Gemini 2.5 Flash)  
 ✅ **Database Models** (SQLite + PostgreSQL ready)  
 ✅ **Deployment Configurations** (Netlify, Vercel, Railway, Render)  
 ✅ **Documentation** (Setup, deployment, API docs)  
