@@ -97,10 +97,10 @@ npm start  # http://localhost:3000
 
 #### **2. Demo Video Script**
 ```
-1. "Let me show you our AI-powered peer review system"
+1. "Let me show you our peer review and behavioral analytics system"
 2. Login as different roles (Employee → Manager → Admin)
 3. Submit a peer review
-4. View AI-generated insights
+4. View algorithmic behavioral insights
 5. Show real-time analytics dashboard
 6. Demonstrate mobile responsiveness
 ```

@@ -316,7 +316,7 @@ def individual_view_page():
                 st.plotly_chart(fig_scores, use_container_width=True)
         
         # LLM Insights
-        st.markdown("### 🤖 AI-Generated Insights")
+        st.markdown("### 📊 Algorithmic Behavioral Insights")
         
         with st.spinner("Generating insights..."):
             llm_insights = st.session_state.llm_generator.generate_employee_insights(insights)

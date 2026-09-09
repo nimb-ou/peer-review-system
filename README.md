@@ -76,7 +76,7 @@ The app will open at `http://localhost:8501`
 - Personal performance metrics
 - Anomaly detection alerts
 - Score trends and behavior patterns
-- AI-generated insights and recommendations
+- Algorithmic Behavioral Insights and recommendations
 
 ### 🔧 Admin Panel
 - Database statistics
@@ -84,7 +84,7 @@ The app will open at `http://localhost:8501`
 - Model training interface
 - LLM configuration
 
-## 🤖 AI Features
+## 🤖 Machine Learning & Analytics Features
 
 ### Machine Learning Pipeline
 - **Feature Engineering**: Rolling averages, trends, volatility metrics

@@ -303,7 +303,7 @@ export default function Reviews() {
         </Grid>
       )}
 
-      {/* AI Insights Tab */}
+      {/* Behavioral Insights Tab */}
       {tabValue === 2 && (
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -311,11 +311,11 @@ export default function Reviews() {
               <CardContent>
                 <Typography variant="h6" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                   <Psychology color="primary" />
-                  AI-Powered Review Insights
+                  Statistical Review Insights
                 </Typography>
                 
                 <Alert severity="info" sx={{ mb: 3 }}>
-                  🧠 Based on your review patterns, here are some AI-generated insights about your feedback style
+                  🧠 Based on your review patterns, here are algorithmic behavioral insights about your feedback style
                 </Alert>
 
                 <Grid container spacing={2}>

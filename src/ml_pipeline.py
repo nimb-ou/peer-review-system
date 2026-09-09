@@ -51,6 +51,12 @@ class PeerReviewMLPipeline:
         # Ensure date column is datetime
         df['date'] = pd.to_datetime(df['date'])
         
+        # Ensure comment column exists and handle nulls
+        if 'comment' not in df.columns:
+            df['comment'] = ''
+        else:
+            df['comment'] = df['comment'].fillna('')
+
         # Add numeric descriptor score
         df['descriptor_score'] = df['descriptor'].map(self.descriptor_scores)
         
