@@ -282,7 +282,30 @@ class PeerReviewMLPipeline:
         df = self.db_manager.get_reviews(start_date=start_date, reviewee_id=employee_id)
         
         if len(df) == 0:
-            return {"error": "No recent data found for employee"}
+            df = self.db_manager.get_reviews(reviewee_id=employee_id)
+            if len(df) > 0 and 'date' in df.columns:
+                max_dt = pd.to_datetime(df['date']).max()
+                min_dt = max_dt - timedelta(days=days)
+                sub_df = df[pd.to_datetime(df['date']) >= min_dt]
+                if len(sub_df) > 0:
+                    df = sub_df
+                    start_date = min_dt.date() if hasattr(min_dt, 'date') else min_dt
+                    end_date = max_dt.date() if hasattr(max_dt, 'date') else max_dt
+
+        if len(df) == 0:
+            return {
+                'employee_id': employee_id,
+                'date_range': f"{start_date} to {end_date}",
+                'avg_score': 0.0,
+                'composite_score': 0.0,
+                'collaboration_rate': 0.0,
+                'withdrawn_rate': 0.0,
+                'score_trend_7d': 0.0,
+                'is_anomaly': False,
+                'behavior_cluster': 0,
+                'total_reviews': 0,
+                'error': "No recent data found for employee"
+            }
         
         # Engineer features
         features_df = self.engineer_features(df)
